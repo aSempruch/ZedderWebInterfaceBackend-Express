@@ -21,9 +21,9 @@ module.exports = class connectionHandler {
 
         var s3 = '';
         if(netids) {
-            s3 += `AND (`
+            s3 += `AND (`;
             netids.map((netid, index) => {
-                s3 += `posted LIKE '${netid}%' OR covered LIKE '${netid}%'`;
+                s3 += `posted LIKE '${netid}' OR covered LIKE '${netid}'`;
                 if (index + 1 < netids.length)
                     s3 += ` OR `;
             });
@@ -31,6 +31,7 @@ module.exports = class connectionHandler {
         }
 
         var query = s1 + s2 + s3;
+        console.log(query);
         return query;
     }
 
